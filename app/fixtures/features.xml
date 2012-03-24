@@ -1,0 +1,276 @@
+<osm version="0.6" generator="Osmosis SNAPSHOT-r26564">
+  <node id="251127917" version="5" timestamp="2012-03-05T11:17:55Z" uid="14498" user="Jan Westerhof" changeset="10878196" lat="52.375785" lon="4.9006641">
+    <tag k="cruising" v="yes"/>
+    <tag k="gay:men" v="yes"/>
+    <tag k="description:en" v="Small, popular gay bar"/>
+    <tag k="gay" v="yes"/>
+    <tag k="name" v="De Engel van Amsterdam"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="fetish" v="no"/>
+    <tag k="addr:street" v="Zeedijk"/>
+    <tag k="darkroom" v="no"/>
+    <tag k="addr:housenumber" v="21"/>
+  </node>
+  <node id="251127918" version="2" timestamp="2010-03-14T17:07:58Z" uid="175600" user="grossing" changeset="4126922" lat="52.3757225" lon="4.9007182">
+    <tag k="name" v="Lef"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251127919" version="3" timestamp="2011-02-26T20:35:30Z" uid="2407" user="florisje" changeset="7404177" lat="52.3756935" lon="4.9006505">
+    <tag k="name" v="The Queen&apos;s Head"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251150451" version="3" timestamp="2009-12-26T12:05:08Z" uid="48448" user="paulbe" changeset="3454074" lat="52.3737173" lon="4.8955245">
+    <tag k="name" v="Players cafe"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251150454" version="4" timestamp="2011-03-01T19:42:13Z" uid="2407" user="florisje" changeset="7432254" lat="52.3741715" lon="4.8966679">
+    <tag k="name" v="Durty Nelly&apos;s"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251150711" version="4" timestamp="2011-03-01T19:42:13Z" uid="2407" user="florisje" changeset="7432254" lat="52.3746502" lon="4.8973142">
+    <tag k="name" v="Irish Pub Slainte"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251165502" version="3" timestamp="2011-02-26T20:35:33Z" uid="2407" user="florisje" changeset="7404177" lat="52.3728604" lon="4.9011473">
+    <tag k="name" v="Cafe Stevens"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Geldersekade"/>
+    <tag k="addr:housenumber" v="123"/>
+  </node>
+  <node id="251165504" version="4" timestamp="2011-05-26T21:59:21Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3726861" lon="4.9010526">
+    <tag k="name" v="Café Cuba"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251165505" version="4" timestamp="2011-05-26T21:59:21Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3726299" lon="4.9010196">
+    <tag k="name" v="Cotton Club"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251165506" version="5" timestamp="2011-05-26T21:59:21Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3724859" lon="4.9009348">
+    <tag k="name" v="Bern"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251165507" version="4" timestamp="2011-05-26T21:59:21Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3723885" lon="4.9008776">
+    <tag k="addr:postcode" v="1012CR"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="Café Fonteyn"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Nieuwmarkt"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="15"/>
+  </node>
+  <node id="251168502" version="3" timestamp="2011-02-26T20:35:35Z" uid="2407" user="florisje" changeset="7404177" lat="52.3719916" lon="4.9005428">
+    <tag k="name" v="Café Nieuwmarkt"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Nieuwmarkt"/>
+    <tag k="addr:housenumber" v="25"/>
+  </node>
+  <node id="251168506" version="2" timestamp="2010-03-14T17:07:47Z" uid="175600" user="grossing" changeset="4126922" lat="52.3720927" lon="4.8993297">
+    <tag k="name" v="Temple Bar"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251168507" version="7" timestamp="2011-11-18T21:05:47Z" uid="171863" user="clara" changeset="9867820" lat="52.3719721" lon="4.8991679">
+    <tag k="microbrewery" v="yes"/>
+    <tag k="website" v="http://www.ratebeer.com/Place/netherlands/amsterdam/de-bekeerde-suster/5035.htm"/>
+    <tag k="outside_seating" v="no"/>
+    <tag k="name" v="De Bekeerde Suster"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251168509" version="4" timestamp="2011-05-26T21:59:19Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3723799" lon="4.8995">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="name" v="Café &apos;t Loosje"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251168510" version="3" timestamp="2011-05-26T21:59:19Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3724585" lon="4.8995457">
+    <tag k="name" v="Café Coffeeshop Belmondo"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251169840" version="4" timestamp="2011-05-26T21:59:19Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3725763" lon="4.8996315">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="name" v="Café Poco Loco"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251169842" version="4" timestamp="2011-05-26T21:59:20Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3727451" lon="4.8997603">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="name" v="Geweaght Café"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251177433" version="4" timestamp="2010-08-18T09:16:51Z" uid="8909" user="mvexel" changeset="5524757" lat="52.3740711" lon="4.9017078">
+    <tag k="name" v="eatme"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="251528281" version="3" timestamp="2011-05-26T23:06:09Z" uid="7702" user="milovanderlinden" changeset="8258159" lat="52.3714751" lon="4.8925616">
+    <tag k="name" v="Pool and Snooker"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="359239780" version="4" timestamp="2010-03-14T17:07:34Z" uid="175600" user="grossing" changeset="4126922" lat="52.3702808" lon="4.8887066">
+    <tag k="name" v="Cafe Gollem"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Raamsteeg"/>
+    <tag k="addr:housenumber" v="4"/>
+  </node>
+  <node id="469327701" version="3" timestamp="2011-01-05T16:24:54Z" uid="8909" user="mvexel" changeset="6873398" lat="52.3723446" lon="4.895142">
+    <tag k="name" v="Wynand Fockink"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Pijlsteeg"/>
+    <tag k="note" v="http://www.wynand-fockink.nl/"/>
+    <tag k="addr:housenumber" v="31"/>
+  </node>
+  <node id="538535045" version="3" timestamp="2011-05-26T23:06:14Z" uid="7702" user="milovanderlinden" changeset="8258159" lat="52.3745112" lon="4.8900157">
+    <tag k="name" v="Cafe Van Zuylen"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Torensteeg"/>
+    <tag k="addr:housenumber" v="8"/>
+  </node>
+  <node id="567110613" version="3" timestamp="2011-05-26T21:59:21Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3727419" lon="4.9010854">
+    <tag k="addr:postcode" v="1012CR"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="De Vriendschap"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Nieuwmarkt"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="1"/>
+  </node>
+  <node id="577417506" version="2" timestamp="2011-06-03T19:44:03Z" uid="24748" user="mabapla" changeset="8332939" lat="52.3737678" lon="4.8986387">
+    <tag k="shop" v="coffee_shop;cafe"/>
+    <tag k="name" v="Cafe Pleinzicht"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="577418601" version="2" timestamp="2010-08-16T14:26:49Z" uid="36790" user="stroet43" changeset="5509710" lat="52.3736968" lon="4.8995092">
+    <tag k="name" v="Old Sailor Pub"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="577418602" version="2" timestamp="2010-07-31T05:30:46Z" uid="5359" user="user_5359" changeset="5360012" lat="52.3740444" lon="4.8998539">
+    <tag k="name" v="Black Tiger Bar"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="comment" v="pool table"/>
+  </node>
+  <node id="577418603" version="4" timestamp="2011-05-26T21:59:22Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3731882" lon="4.8989071">
+    <tag k="shop" v="coffee"/>
+    <tag k="name" v="The Bassment"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="577419235" version="1" timestamp="2009-12-02T00:35:45Z" uid="203503" user="Felch" changeset="3268778" lat="52.372479" lon="4.8976491">
+    <tag k="name" v="Cafe Bar De Stoof"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="577419236" version="1" timestamp="2009-12-02T00:35:45Z" uid="203503" user="Felch" changeset="3268778" lat="52.3723742" lon="4.8975311">
+    <tag k="name" v="Cafe Bar The Pint"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="664456474" version="4" timestamp="2011-01-23T11:19:11Z" uid="290680" user="wheelmap_visitor" changeset="7059797" lat="52.3727141" lon="4.900402">
+    <tag k="wheelchair" v="yes"/>
+    <tag k="website" v="http://www.indewaag.nl"/>
+    <tag k="name" v="In De Waag"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="679103181" version="5" timestamp="2011-05-26T23:06:18Z" uid="7702" user="milovanderlinden" changeset="8258159" lat="52.3717559" lon="4.8895995">
+    <tag k="name" v="&apos;t Schuim"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Spuistraat"/>
+    <tag k="addr:housenumber" v="187"/>
+  </node>
+  <node id="836672869" version="6" timestamp="2011-06-03T19:44:15Z" uid="24748" user="mabapla" changeset="8332939" lat="52.3759327" lon="4.8992029">
+    <tag k="wheelchair" v="no"/>
+    <tag k="website" v="http://www.deprael.nl/"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="De Prael"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="wheelchair:description:en" v="there&apos;s a 15cm doorstep, didn&apos;t check rest of the bar"/>
+    <tag k="addr:street" v="Warmoesstraat"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="note" v="brewery tap / proeflokaal of the Brouwerij De Prael"/>
+    <tag k="addr:housenumber" v="15"/>
+  </node>
+  <node id="856329157" version="2" timestamp="2010-08-13T08:27:06Z" uid="8909" user="mvexel" changeset="5479728" lat="52.3735938" lon="4.9028635">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="food" v="yes"/>
+    <tag k="name" v="Captein &amp; Co"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="858193791" version="3" timestamp="2011-10-06T19:20:42Z" uid="290680" user="wheelmap_visitor" changeset="9482892" lat="52.3698398" lon="4.9016672">
+    <tag k="wheelchair" v="no"/>
+    <tag k="outside_seating" v="yes"/>
+    <tag k="name" v="De Sluyswacht"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="scenic" v="yes"/>
+  </node>
+  <node id="858208357" version="1" timestamp="2010-08-13T08:41:46Z" uid="8909" user="mvexel" changeset="5479827" lat="52.3705213" lon="4.8987361">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="food" v="yes"/>
+    <tag k="name" v="De Engelbewaarder"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="866385078" version="1" timestamp="2010-08-18T09:16:50Z" uid="8909" user="mvexel" changeset="5524757" lat="52.3738722" lon="4.9022134">
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="866516424" version="2" timestamp="2011-02-28T21:07:16Z" uid="2407" user="florisje" changeset="7424538" lat="52.373193" lon="4.9003258">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="name" v="Cafe de Zon"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="1069195479" version="4" timestamp="2011-01-20T14:03:46Z" uid="48448" user="paulbe" changeset="7030829" lat="52.3712601" lon="4.8939609">
+    <tag k="addr:postcode" v="1012 KD"/>
+    <tag k="cuisine" v="belgian"/>
+    <tag k="website" v="http://www.brakkegrond.nl/eetcafe/"/>
+    <tag k="outside_seating" v="yes"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="food" v="yes"/>
+    <tag k="name" v="de Brakke Grond"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Nes"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="43"/>
+  </node>
+  <node id="1083659913" version="1" timestamp="2011-01-05T16:18:16Z" uid="8909" user="mvexel" changeset="6873398" lat="52.3715612" lon="4.8937492">
+    <tag k="website" v="http://www.caferestaurantvankerkwijk.nl/"/>
+    <tag k="food" v="yes"/>
+    <tag k="name" v="Van Kerkwijk"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Nes"/>
+    <tag k="addr:housenumber" v="41"/>
+  </node>
+  <node id="1083668069" version="1" timestamp="2011-01-05T16:24:54Z" uid="8909" user="mvexel" changeset="6873398" lat="52.3730154" lon="4.8943822">
+    <tag k="outside_seating" v="yes"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="1310974709" version="1" timestamp="2011-06-03T19:44:00Z" uid="24748" user="mabapla" changeset="8332939" lat="52.370177" lon="4.8933186">
+    <tag k="name" v="The Tara Irish Pub"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="1310974731" version="1" timestamp="2011-06-03T19:44:00Z" uid="24748" user="mabapla" changeset="8332939" lat="52.3718797" lon="4.8954539">
+    <tag k="name" v="Rock Café"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="1310974786" version="1" timestamp="2011-06-03T19:44:01Z" uid="24748" user="mabapla" changeset="8332939" lat="52.3717179" lon="4.8952369">
+    <tag k="name" v="Susie&apos;s Saloon"/>
+    <tag k="amenity" v="pub"/>
+  </node>
+  <node id="1350796790" version="3" timestamp="2011-07-06T17:37:00Z" uid="70696" user="xybot" changeset="8650305" lat="52.3755658" lon="4.8994631">
+    <tag k="addr:postcode" v="1012 GD"/>
+    <tag k="wifi" v="yes"/>
+    <tag k="website" v="http://www.deprael.nl"/>
+    <tag k="int_name" v="Brewery &quot;De Prael&quot;"/>
+    <tag k="alt_name" v="De Prael"/>
+    <tag k="name" v="Brouwerij &quot;De Prael&quot;"/>
+    <tag k="designation" v="Beer Brewery"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:housename" v="Proeflokaal &quot;De Prael&quot;"/>
+    <tag k="addr:street" v="Oudezijds Armsteeg"/>
+    <tag k="old_name" v="De Prael"/>
+    <tag k="addr:housenumber" v="26"/>
+  </node>
+  <node id="1388946516" version="6" timestamp="2012-03-05T06:12:55Z" uid="81983" user="Ogmios" changeset="10876448" lat="52.3744915" lon="4.8970199">
+    <tag k="cruising" v="yes"/>
+    <tag k="gay:men" v="only"/>
+    <tag k="fetish:leather" v="yes"/>
+    <tag k="gay" v="yes"/>
+    <tag k="name" v="Argos"/>
+    <tag k="description:de" v="Amsterdam&apos;s alteste Lederkneipe"/>
+    <tag k="amenity" v="pub"/>
+    <tag k="addr:street" v="Warmoesstraat"/>
+    <tag k="fetish:uniform" v="yes"/>
+    <tag k="darkroom" v="yes"/>
+    <tag k="fetish:bears" v="yes"/>
+    <tag k="addr:housenumber" v="95"/>
+  </node>
+</osm>

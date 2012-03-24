@@ -50,8 +50,9 @@ function deliverStatic(request, response) {
 
 function serveHTTP(app) {
   app.all(/xapi/, function(request, response, next) {
-    console.log('foo');
-    apiProxy.http(request, response);
+    request.url = '/fixtures/features.xml';
+    deliverStatic(request, response);
+    //apiProxy.http(request, response);
   });
   app.get(/./, function(request, response, next) {
     //if (!routes['static'].test(request.url)) {
