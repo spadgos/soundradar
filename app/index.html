@@ -1,1 +1,32 @@
-very nice!
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sound Radar</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map_canvas { height: 100% }
+  </style>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC5XYweJaGDoMa5dhq3yPmDH9ah9mSTgZc&sensor=false"></script>
+  <script type="text/javascript">
+    function initialize() {
+      var stockholm = new google.maps.LatLng(59.32522, 18.07002);
+      var map = new google.maps.Map(document.getElementById("map_canvas"), {
+        center: stockholm,
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      var marker = new google.maps.Marker({
+        draggable: true,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        position: stockholm
+      });
+    }
+  </script>
+</head>
+<body onload="initialize();">
+  <div id="map_canvas"></div>
+</body>
+</html>
