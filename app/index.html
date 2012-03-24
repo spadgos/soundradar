@@ -12,9 +12,65 @@
   <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
   <script src="Audiolet.js"></script>
   <script src="config.js"></script>
+  <style type="text/css">
+    #panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      background-color: white;
+      padding: 15px;
+    }
+    label {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div id="map_canvas"></div>
+  <div id="panel">
+    <label>
+      Feature
+      <select id="featureSelect"></select>
+    </label>
+    <label>
+      Octave
+      <input id="octave" type="number" step="1" value="4" min="1" max="8"/>
+    </label>
+    <label>
+      Attack
+      <input id="attack" type="number" step=".1" value=".2" min="0" max="3"/>
+    </label>
+    <label>
+      Release
+      <input id="release" type="number" step=".1" value=".4" min="0" max="3"/>
+    </label>
+    <label>
+      Colour
+      <select id="color">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="yellow">Yellow</option>
+        <option value="orange">Orange</option>
+        <option value="purple">Purple</option>
+        <option value="brown">Brown</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="gray">Gray</option>
+      </select>
+    <label id="addLabel">
+      Add
+      <button id="add">Add</button>
+    </label>
+    <label id="loading">Loading...</label>
+    <hr />
+    <label>
+      BPM
+      <input id="bpm" type="number" value="120" step="5" />
+    </label>
+    <label><button id="play">Play</button></label>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>

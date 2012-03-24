@@ -1,3 +1,4 @@
+/*globals google, Audiolet */
 $(function(){
 
   var computeHeading = google.maps.geometry.spherical.computeHeading,
@@ -6,36 +7,118 @@ $(function(){
       features = [],
       mapElement = document.getElementById("map_canvas"),
       center = new google.maps.LatLng(52.371, 4.895),
-      audiolet = new Audiolet(),
+      audiolet = window.audiolet = new Audiolet(),
       icon = function (color) {
-        return 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_' + color + '.png'
+        return 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_' + color + '.png';
       },
+      colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'black', 'white', 'gray'],
       distanceFactor,
       types = {
-        'amenity=pub' : {
-          iconColor: icon('red'),
-          octave: 5
-        },
-        'amenity=place_of_worship' : {
-          iconColor: icon('green'),
-          octave: 5
-        },
-        'amenity=fast_food' : {
-          iconColor: icon('purple'),
-          octave: 5
-        }
-      };
+        'amenity=parking': {},
+        'amenity=school': {},
+        'amenity=place_of_worship': {},
+        'amenity=restaurant': {},
+        'amenity=bench': {},
+        'amenity=fuel': {},
+        'amenity=grave_yard': {},
+        'amenity=post_box': {},
+        'amenity=kindergarten': {},
+        'amenity=bank': {},
+        'amenity=fast_food': {},
+        'amenity=hospital': {},
+        'amenity=post_office': {},
+        'amenity=cafe': {},
+        'amenity=recycling': {},
+        'amenity=pub': {},
+        'amenity=public_building': {},
+        'amenity=pharmacy': {},
+        'amenity=telephone': {},
+        'amenity=fire_station': {},
+        'amenity=police': {},
+        'amenity=bicycle_parking': {},
+        'amenity=toilets': {},
+        'amenity=swimming_pool': {},
+        'amenity=atm': {},
+        'amenity=townhall': {},
+        'amenity=library': {},
+        'amenity=drinking_water': {},
+        'amenity=shelter': {},
+        'amenity=waste_basket': {},
+        'leisure=pitch': {},
+        'leisure=park': {},
+        'leisure=swimming_pool': {},
+        'leisure=playground': {},
+        'leisure=garden': {},
+        'leisure=sports_centre': {},
+        'leisure=nature_reserve': {},
+        'leisure=common': {},
+        'leisure=stadium': {},
+        'leisure=track': {},
+        'leisure=golf_course': {},
+        'leisure=recreation_ground': {},
+        'leisure=slipway': {},
+        'public_transport=stop_position': {},
+        'power=tower': {},
+        'power=pole': {},
+        'power=line': {},
+        'power=generator': {},
+        'power=sub_station': {},
+        'power=minor_line': {},
+        'power=station': {},
+        'power=cable_distribution_cabinet': {},
+        'power=transformer': {}
+      },
+      allTypes = Object.keys(types);
+
+  allTypes.forEach(function (type, index) {
+    types[type] = {
+      octave: Math.floor(Math.random() * 6 + 2),
+      icon: icon(colors[index % colors.length])
+    };
+    $('#featureSelect').append($('<option>')
+      .text(type)
+      .val(type)
+    );
+  });
+  $('#add').click(function (e) {
+    e.preventDefault();
+    var type = $('#featureSelect').val();
+    types[type] = {
+      octave: parseInt($('#octave').val(), 10),
+      attack: parseFloat($('#attack').val()),
+      release: parseFloat($('#release').val()),
+      icon: icon($('#color').val())
+    };
+    addFeature(type);
+  });
+  $('#play').click(function (e) {
+    e.preventDefault();
+    audiolet.scheduler.setTempo(parseInt($('#bpm').val(), 10));
+    play();
+  });
+  $('#loading').ajaxStart(function () {
+    $(this).show();
+  }).ajaxStop(function () {
+    $(this).hide();
+  }).hide();
+
+  function addFeature(type) {
+    var mapBounds = map.getBounds();
+    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
+    return getFeatures(type, mapBounds);
+  }
+  window.add = addFeature;
 
   function createMarker(position, type) {
-      return new google.maps.Marker({
-        map: map,
-        clickable: false,
-        position: position,
-        icon: types[type] && types[type].iconColor
-      })
+    return new google.maps.Marker({
+      map: map,
+      clickable: false,
+      position: position,
+      icon: types[type] && types[type].icon
+    });
   }
 
-  function getFeatures(category, type, bounds) {
+  function getFeatures(type, bounds) {
     var boundsCenter = bounds.getCenter(),
         ne = bounds.getNorthEast(),
         sw = bounds.getSouthWest(),
@@ -46,16 +129,18 @@ $(function(){
         resultObjects;
 
     var deferred = $.Deferred();
-    var url = CONFIG.api + '/node[' + category + '=' + type + '][bbox=' + [w, s, e, n].join(',') + ']';
+    var url = CONFIG.api + '/node[' + type + '][bbox=' + [w, s, e, n].join(',') + ']';
 
+    console.info('Fetching %s', type);
     $.ajax({
       url : url,
       dataType: 'xml'
     }).done(function (xml) {
+      console.info('Done');
       var resultObjects = $(xml).find('node').map(function (node) {
         var latLng = new google.maps.LatLng(parseFloat(this.getAttribute('lat')), parseFloat(this.getAttribute('lon')));
         return {
-          type: category + '=' + type,
+          type: type,
           latLng: latLng,
           heading: (computeHeading(boundsCenter, latLng) + 360) % 360,
           distance: computeDistanceBetween(boundsCenter, latLng)
@@ -98,10 +183,10 @@ $(function(){
     this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2, frequency);
 
     this.gain = new Gain(this.audiolet);
-    this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.7, 1, function() {
+    this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, .1, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
-        featureObj.marker.setIcon(types[featureObj.type].iconColor);
+        featureObj.marker.setIcon(types[featureObj.type].icon);
       }.bind(this));
     }.bind(this));
     this.modulator.connect(this.modulatorMulAdd);
@@ -116,7 +201,7 @@ $(function(){
     return this.scale.getFrequency(this.note, 16.352, this.octave);
   };
 
-  window.play = function() {
+  function play() {
     var durations = [],
         delta;
 
@@ -132,17 +217,10 @@ $(function(){
     var dSeq = new PSequence(durations);
     var fSeq = new PSequence(features);
     audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
-      featureObj.marker.setIcon(icon('yellow'));
+      featureObj.marker.setIcon('http://www.google.com/mapfiles/dd-start.png');
       var synth = new Synth(audiolet, featureObj);
       synth.connect(audiolet.output);
     });
   };
-
-  setTimeout(function(){
-    var mapBounds = map.getBounds();
-    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
-    getFeatures('amenity', 'pub', mapBounds);
-    getFeatures('amenity', 'fast_food', mapBounds);
-    getFeatures('amenity', 'place_of_worship', mapBounds);
-  }, 500)
+  window.play = play;
 });
