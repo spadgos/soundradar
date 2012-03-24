@@ -1,0 +1,131 @@
+<osm version="0.6" generator="Osmosis SNAPSHOT-r26564">
+  <node id="34032851" version="6" timestamp="2009-12-26T12:05:07Z" uid="48448" user="paulbe" changeset="3454074" lat="52.3737801" lon="4.8927007">
+    <tag k="description" v="BK Nieuwendijk :: Amsterdam, Nieuwendijk 218"/>
+    <tag k="name" v="Burger King"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="34032855" version="10" timestamp="2011-04-24T19:54:46Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3668593" lon="4.894157">
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="Burger King"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Reguliersbreestraat"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="15-17"/>
+  </node>
+  <node id="34043794" version="7" timestamp="2010-03-14T17:07:44Z" uid="175600" user="grossing" changeset="4126922" lat="52.373953" lon="4.8940225">
+    <tag k="addr:full" v="Damrak 87"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="KFC"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Damrak"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="87"/>
+  </node>
+  <node id="34044093" version="9" timestamp="2011-04-24T19:54:46Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3737497" lon="4.8935952">
+    <tag k="cuisine" v="burger"/>
+    <tag k="description" v="Amsterdam Damrak 92 McExpress"/>
+    <tag k="name" v="McDonald&apos;s"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="34044095" version="5" timestamp="2010-08-06T16:46:16Z" uid="207745" user="NE2" changeset="5418228" lat="52.3738968" lon="4.8928502">
+    <tag k="cuisine" v="burger"/>
+    <tag k="description" v="Amsterdam Nieuwendijk 212"/>
+    <tag k="name" v="McDonald&apos;s"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="34044096" version="8" timestamp="2010-08-06T16:47:19Z" uid="207745" user="NE2" changeset="5418228" lat="52.3667939" lon="4.8937081">
+    <tag k="cuisine" v="burger"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="description" v="Muntplein"/>
+    <tag k="name" v="McDonald&apos;s"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Muntplein"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="9"/>
+  </node>
+  <node id="34044097" version="5" timestamp="2010-08-06T16:45:21Z" uid="207745" user="NE2" changeset="5418228" lat="52.3710304" lon="4.8919919">
+    <tag k="cuisine" v="burger"/>
+    <tag k="description" v="Amsterdam Kalverstraat"/>
+    <tag k="name" v="McDonald&apos;s"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="251149364" version="2" timestamp="2010-03-14T17:07:44Z" uid="175600" user="grossing" changeset="4126922" lat="52.3739505" lon="4.8938812">
+    <tag k="name" v="Kentucky Fried Chicken"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="251168511" version="3" timestamp="2011-05-26T21:59:19Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3725034" lon="4.8995979">
+    <tag k="name" v="Plein 26"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="251168512" version="5" timestamp="2011-05-26T21:59:19Z" uid="51722" user="Chris Parker" changeset="8257536" lat="52.3723193" lon="4.8994598">
+    <tag k="shop" v="beverages"/>
+    <tag k="name" v="Toko Joyce"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="251528276" version="3" timestamp="2011-05-26T23:06:24Z" uid="7702" user="milovanderlinden" changeset="8258159" lat="52.371782" lon="4.8926031">
+    <tag k="name" v="Subway"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="251528283" version="4" timestamp="2011-04-24T19:54:44Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3667184" lon="4.8946988">
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="Subway"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Reguliersbreestraat"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="27"/>
+  </node>
+  <node id="355242215" version="4" timestamp="2011-03-01T19:42:13Z" uid="2407" user="florisje" changeset="7432254" lat="52.3747063" lon="4.8973945">
+    <tag k="cuisine" v="asian"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="name" v="Wok to Walk"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="432860535" version="4" timestamp="2011-04-24T19:54:52Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3669592" lon="4.8938298">
+    <tag k="addr:country" v="NL"/>
+    <tag k="description" v="Falafel, vegetarian"/>
+    <tag k="name" v="Maoz"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Muntplein"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="1"/>
+  </node>
+  <node id="432862176" version="4" timestamp="2010-05-07T14:20:02Z" uid="48448" user="paulbe" changeset="4630487" lat="52.3679957" lon="4.8909836">
+    <tag k="addr:postcode" v="1012 XK"/>
+    <tag k="cuisine" v="friture"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="Vlaams Friethuis"/>
+    <tag k="amenity" v="fast_food"/>
+    <tag k="addr:street" v="Voetboogstraat"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="33"/>
+  </node>
+  <node id="719690871" version="2" timestamp="2011-06-03T18:38:52Z" uid="24748" user="mabapla" changeset="8332245" lat="52.3689706" lon="4.9021317">
+    <tag k="name" v="Soup en Zo"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="963802742" version="2" timestamp="2011-04-24T19:54:52Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3668904" lon="4.8940524">
+    <tag k="name" v="Burgerbar"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="963836037" version="2" timestamp="2011-04-24T19:54:53Z" uid="48448" user="paulbe" changeset="7956432" lat="52.3669207" lon="4.8939533">
+    <tag k="name" v="Falafel"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="976615026" version="1" timestamp="2010-11-04T15:30:16Z" uid="171863" user="clara" changeset="6289377" lat="52.3670112" lon="4.9120064">
+    <tag k="website" v="http://www.burgermeester.eu/"/>
+    <tag k="name" v="Burgermeester"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="1083536033" version="1" timestamp="2011-01-05T14:21:36Z" uid="8909" user="mvexel" changeset="6872220" lat="52.3671722" lon="4.9121815">
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="1089777287" version="1" timestamp="2011-01-08T00:43:18Z" uid="8909" user="mvexel" changeset="6899155" lat="52.3725132" lon="4.8761591">
+    <tag k="name" v="Ma Baker"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+  <node id="1089777298" version="2" timestamp="2012-01-19T22:09:30Z" uid="20977" user="Pemberton" changeset="10441818" lat="52.3692674" lon="4.878954">
+    <tag k="cuisine" v="burger"/>
+    <tag k="name" v="Burgermeester"/>
+    <tag k="amenity" v="fast_food"/>
+  </node>
+</osm>
