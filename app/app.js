@@ -6,8 +6,9 @@ $(function(){
       map,
       features = [],
       mapElement = document.getElementById("map_canvas"),
-      center = new google.maps.LatLng(52.371, 4.895),
-      audiolet = window.audiolet = new Audiolet(),
+      centerCoords = localStorage.getItem('centerCoords') ? JSON.parse(localStorage.getItem('centerCoords')) : [52.371, 4.895],
+      center = new google.maps.LatLng(centerCoords[0], centerCoords[1]),
+      audiolet = new Audiolet(),
       icon = function (color) {
         return 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_' + color + '.png';
       },
@@ -107,7 +108,6 @@ $(function(){
     distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
     return getFeatures(type, mapBounds);
   }
-  window.add = addFeature;
 
   function createMarker(position, type) {
     return new google.maps.Marker({
@@ -131,13 +131,12 @@ $(function(){
     var deferred = $.Deferred();
     var url = CONFIG.api + '/node[' + type + '][bbox=' + [w, s, e, n].join(',') + ']';
 
-    console.info('Fetching %s', type);
     $.ajax({
       url : url,
       dataType: 'xml'
     }).done(function (xml) {
-      console.info('Done');
       var resultObjects = $(xml).find('node').map(function (node) {
+      resultObjects = $(xml).find('node').map(function (node) {
         var latLng = new google.maps.LatLng(parseFloat(this.getAttribute('lat')), parseFloat(this.getAttribute('lon')));
         return {
           type: type,
@@ -159,6 +158,14 @@ $(function(){
     return deferred;
   }
 
+  function updateMapObjects() {
+    var mapBounds = map.getBounds();
+    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
+    getFeatures('amenity', 'pub', mapBounds);
+    getFeatures('amenity', 'fast_food', mapBounds);
+    getFeatures('amenity', 'place_of_worship', mapBounds);
+  }
+
   map = new google.maps.Map(mapElement, {
     center:    center,
     zoom:      15,
@@ -166,7 +173,13 @@ $(function(){
   });
   createMarker(center, true);
   google.maps.event.addListener(map, 'center_changed', function() {
-
+    var mapCenter = map.getCenter(),
+        mapBounds = map.getBounds();
+    features = features.filter(function(featureObj) {
+      return mapBounds.contains(featureObj.latLng);
+    });
+    updateMapObjects();
+    localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
   });
 
   var Synth = function(audiolet, featureObj) {
@@ -206,7 +219,7 @@ $(function(){
         delta;
 
     for (var i = 0, l = features.length; i < l; i++) {
-      if ( i == l-1) {
+      if ( i === l - 1) {
         delta = 360 - features[i].heading;
       } else {
         delta = features[i+1].heading - features[i].heading;
@@ -221,6 +234,8 @@ $(function(){
       var synth = new Synth(audiolet, featureObj);
       synth.connect(audiolet.output);
     });
-  };
+  }
   window.play = play;
+
+  setTimeout(updateMapObjects, 1000);
 });
