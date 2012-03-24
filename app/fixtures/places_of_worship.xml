@@ -1,254 +1,69 @@
+
+<?xml version='1.0' encoding='UTF-8'?>
 <osm version="0.6" generator="Osmosis SNAPSHOT-r26564">
-  <node id="358955210" version="3" timestamp="2009-11-19T17:47:24Z" uid="51045" user="Geogast" changeset="3162149" lat="38.8965007" lon="-77.0255321">
+  <node id="117916525" version="11" timestamp="2010-03-14T22:47:59Z" uid="175600" user="grossing" changeset="4129255" lat="52.3678351" lon="4.8881839">
     <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="02/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="First Baptist Church of Washington (historical)"/>
-    <tag k="gnis:feature_id" v="528923"/>
+    <tag k="name" v="Krijtberg"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="baptist"/>
-    <tag k="ele" v="8"/>
+    <tag k="denomination" v="roman_catholic"/>
   </node>
-  <node id="358955426" version="3" timestamp="2009-11-19T17:47:28Z" uid="51045" user="Geogast" changeset="3162149" lat="38.8992785" lon="-77.0241432">
+  <node id="251177429" version="4" timestamp="2010-08-16T14:26:50Z" uid="36790" user="stroet43" changeset="5509710" lat="52.3737756" lon="4.9000083">
+    <tag k="religion" v="buddhist"/>
+    <tag k="addr:postcode" v="1012 BB"/>
+    <tag k="addr:country" v="NL"/>
+    <tag k="name" v="F.G.S. He Hua Temple"/>
+    <tag k="amenity" v="place_of_worship"/>
+    <tag k="addr:street" v="Zeedijk"/>
+    <tag k="denomination" v="Humanistic Buddhism"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="url" v="www.ibps.nl"/>
+    <tag k="addr:housenumber" v="110"/>
+  </node>
+  <node id="261631356" version="8" timestamp="2010-10-29T09:15:35Z" uid="294552" user="ZMWandelaar" changeset="6215756" lat="52.3710434" lon="4.8971565">
     <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Fourth Presbyterian Church (historical)"/>
-    <tag k="gnis:feature_id" v="529136"/>
+    <tag k="name" v="Waalse Kerk"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="presbyterian"/>
-    <tag k="ele" v="14"/>
+    <tag k="denomination" v="protestant"/>
   </node>
-  <node id="358955439" version="3" timestamp="2009-11-19T17:40:21Z" uid="51045" user="Geogast" changeset="3162084" lat="38.8987229" lon="-77.0316433">
+  <node id="292367162" version="6" timestamp="2010-05-05T15:35:00Z" uid="48448" user="paulbe" changeset="4614000" lat="52.3692964" lon="4.8896053">
     <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Foundry Methodist Church (historical)"/>
-    <tag k="gnis:feature_id" v="529140"/>
+    <tag k="name" v="Begijnhofkapel (RK)"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="methodist"/>
-    <tag k="ele" v="14"/>
+    <tag k="denomination" v="roman_catholic"/>
+    <tag k="note" v="Johannes en Ursula-kerk"/>
   </node>
-  <node id="358956219" version="2" timestamp="2009-11-19T14:59:18Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8981674" lon="-77.0194208">
+  <node id="301143261" version="5" timestamp="2009-09-14T14:54:15Z" uid="172364" user="skajline" changeset="2482075" lat="52.367478" lon="4.8884895">
     <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Capital Memorial Adventist Church (historical)"/>
-    <tag k="gnis:feature_id" v="529505"/>
+    <tag k="name" v="Singelkerk (Lam)"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="12"/>
+    <tag k="denomination" v="mennonite"/>
+    <tag k="note" v="Ver. Doopgsgezinde Gem. Amsterdam"/>
   </node>
-  <node id="358956412" version="3" timestamp="2009-11-19T17:55:22Z" uid="51045" user="Geogast" changeset="3162244" lat="38.8976118" lon="-77.0149763">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Holy Rosary Catholic Church"/>
-    <tag k="gnis:feature_id" v="529553"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="catholic"/>
-    <tag k="ele" v="13"/>
-  </node>
-  <node id="358956893" version="3" timestamp="2009-11-19T17:55:22Z" uid="51045" user="Geogast" changeset="3162244" lat="38.8995562" lon="-77.0185875">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Saint Marys Catholic Church"/>
-    <tag k="gnis:feature_id" v="529622"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="catholic"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358956920" version="3" timestamp="2009-11-19T17:55:20Z" uid="51045" user="Geogast" changeset="3162244" lat="38.8978896" lon="-77.0255321">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Saint Patricks Catholic Church"/>
-    <tag k="gnis:feature_id" v="529625"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="catholic"/>
-    <tag k="ele" v="12"/>
-  </node>
-  <node id="358957019" version="3" timestamp="2009-11-19T17:47:31Z" uid="51045" user="Geogast" changeset="3162149" lat="38.9006673" lon="-77.0155319">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Second Baptist Church"/>
-    <tag k="gnis:feature_id" v="529638"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="baptist"/>
-    <tag k="ele" v="15"/>
-  </node>
-  <node id="358957181" version="2" timestamp="2009-11-19T14:59:18Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8976118" lon="-77.0146985">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="05/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Holy Rosery Church"/>
-    <tag k="gnis:feature_id" v="529672"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="13"/>
-  </node>
-  <node id="358957298" version="2" timestamp="2010-02-04T17:08:24Z" uid="51045" user="Geogast" changeset="3791710" lat="38.8976118" lon="-77.019143">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="05/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Wesley Chapel (historical)"/>
-    <tag k="gnis:feature_id" v="529706"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358957371" version="2" timestamp="2009-11-19T14:59:14Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8987229" lon="-77.0305322">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="05/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Church of the Epiphany"/>
-    <tag k="gnis:feature_id" v="529732"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358957805" version="2" timestamp="2009-11-19T14:59:17Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8998339" lon="-77.0249766">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="06/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Church of the Ascension"/>
-    <tag k="gnis:feature_id" v="530057"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358957826" version="2" timestamp="2009-11-19T14:59:14Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8984451" lon="-77.032199">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="06/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Foundry Church"/>
-    <tag k="gnis:feature_id" v="530063"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358957844" version="3" timestamp="2009-11-19T17:40:23Z" uid="51045" user="Geogast" changeset="3162084" lat="38.8965007" lon="-77.0241432">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="06/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Methodist Protestant Church"/>
-    <tag k="gnis:feature_id" v="530073"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="methodist"/>
-    <tag k="ele" v="9"/>
-  </node>
-  <node id="358958458" version="2" timestamp="2009-11-19T14:59:19Z" uid="51045" user="Geogast" changeset="3160654" lat="38.9006673" lon="-77.0194209">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="06/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Assemblys Church"/>
-    <tag k="gnis:feature_id" v="530709"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358958791" version="2" timestamp="2009-11-19T14:59:13Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8965007" lon="-77.03081">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="02/01/1993"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Theatre Church (historical)"/>
-    <tag k="gnis:feature_id" v="530988"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="8"/>
-  </node>
-  <node id="358958981" version="3" timestamp="2009-11-19T17:47:31Z" uid="51045" user="Geogast" changeset="3162149" lat="38.9006673" lon="-77.019143">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Corinthian Baptist Church"/>
-    <tag k="gnis:feature_id" v="531144"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="baptist"/>
-    <tag k="ele" v="14"/>
-  </node>
-  <node id="358959035" version="2" timestamp="2009-11-19T14:59:15Z" uid="51045" user="Geogast" changeset="3160654" lat="38.8984451" lon="-77.0258099">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="First Congregational Church"/>
-    <tag k="gnis:feature_id" v="531166"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="13"/>
-  </node>
-  <node id="358959054" version="3" timestamp="2009-11-19T17:37:14Z" uid="51045" user="Geogast" changeset="3162062" lat="38.8962229" lon="-77.0158096">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="First Trinity Lutheran Church"/>
-    <tag k="gnis:feature_id" v="531173"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="lutheran"/>
-    <tag k="ele" v="12"/>
-  </node>
-  <node id="358959098" version="3" timestamp="2009-11-19T17:47:30Z" uid="51045" user="Geogast" changeset="3162149" lat="38.9003895" lon="-77.0233098">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1991"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Greater New Hope Baptist Church"/>
-    <tag k="gnis:feature_id" v="531192"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="baptist"/>
-    <tag k="ele" v="15"/>
-  </node>
-  <node id="358959524" version="2" timestamp="2009-11-19T14:59:14Z" uid="51045" user="Geogast" changeset="3160654" lat="38.9003895" lon="-77.0358101">
-    <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="04/01/1993"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Saint Johns Episcopal Church"/>
-    <tag k="gnis:feature_id" v="531472"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="19"/>
-  </node>
-  <node id="358959876" version="2" timestamp="2009-12-08T22:07:35Z" uid="42429" user="Nuked Piece of Shit" changeset="3328783" lat="38.8986101" lon="-77.0158301">
+  <node id="441674928" version="3" timestamp="2011-04-04T04:39:44Z" uid="152289" user="cgu66" changeset="7760918" lat="52.3677069" lon="4.9050338">
     <tag k="religion" v="jewish"/>
-    <tag k="gnis:created" v="07/01/1991"/>
-    <tag k="gnis:edited" v="02/03/2006"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Adas Israel Synagogue"/>
-    <tag k="gnis:feature_id" v="531809"/>
+    <tag k="name" v="Portugees-Israelitische Gemeente"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="13"/>
+    <tag k="denomination" v="sephardi"/>
   </node>
-  <node id="358960853" version="1" timestamp="2009-03-11T12:55:52Z" uid="4732" user="iandees" changeset="784670" lat="38.895505" lon="-77.029292">
-    <tag k="gnis:created" v="06/27/2008"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Christian Science Reading Room"/>
-    <tag k="gnis:feature_id" v="2457980"/>
-    <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="ele" v="5"/>
-  </node>
-  <node id="358960933" version="3" timestamp="2009-11-19T17:47:27Z" uid="51045" user="Geogast" changeset="3162149" lat="38.8939611" lon="-77.0217683">
+  <node id="725239190" version="3" timestamp="2011-03-31T13:04:08Z" uid="152289" user="cgu66" changeset="7725872" lat="52.3683867" lon="4.8891173">
     <tag k="religion" v="christian"/>
-    <tag k="gnis:created" v="06/27/2008"/>
-    <tag k="gnis:county_id" v="001"/>
-    <tag k="name" v="Grace Presbyterian Church of Washington"/>
-    <tag k="gnis:feature_id" v="2458118"/>
+    <tag k="name" v="Oude Lutherse Kerk"/>
     <tag k="amenity" v="place_of_worship"/>
-    <tag k="gnis:state_id" v="11"/>
-    <tag k="denomination" v="presbyterian"/>
-    <tag k="ele" v="5"/>
+    <tag k="denomination" v="lutheran"/>
+  </node>
+  <node id="1456331226" version="1" timestamp="2011-10-05T22:29:52Z" uid="48448" user="paulbe" changeset="9482211" lat="52.3731404" lon="4.8844472">
+    <tag k="religion" v="christian"/>
+    <tag k="addr:postcode" v="1016 DZ"/>
+    <tag k="name" v="Moeder Godskerk"/>
+    <tag k="amenity" v="place_of_worship"/>
+    <tag k="addr:street" v="Keizersgracht"/>
+    <tag k="denomination" v="syriac_orthodox"/>
+    <tag k="addr:city" v="Amsterdam"/>
+    <tag k="addr:housenumber" v="220"/>
+  </node>
+  <node id="1588299492" version="3" timestamp="2012-01-15T13:24:20Z" uid="20977" user="Pemberton" changeset="10397817" lat="52.373106" lon="4.8786509">
+    <tag k="religion" v="muslim"/>
+    <tag k="name" v="Fatih"/>
+    <tag k="amenity" v="place_of_worship"/>
   </node>
 </osm>
