@@ -5,7 +5,8 @@ $(function(){
       map,
       features = [],
       mapElement = document.getElementById("map_canvas"),
-      center = new google.maps.LatLng(52.371, 4.895),
+      centerCoords = localStorage.getItem('centerCoords') ? JSON.parse(localStorage.getItem('centerCoords')) : [52.371, 4.895],
+      center = new google.maps.LatLng(centerCoords[0], centerCoords[1]),
       audiolet = new Audiolet(),
       icon = function (color) {
         return 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_' + color + '.png'
@@ -14,11 +15,11 @@ $(function(){
       types = {
         'amenity=pub' : {
           iconColor: icon('red'),
-          octave: 5
+          octave: 3
         },
         'amenity=place_of_worship' : {
           iconColor: icon('green'),
-          octave: 5
+          octave: 4
         },
         'amenity=fast_food' : {
           iconColor: icon('purple'),
@@ -26,13 +27,15 @@ $(function(){
         }
       };
 
+  console.log(centerCoords)
+
   function createMarker(position, type) {
-      return new google.maps.Marker({
-        map: map,
-        clickable: false,
-        position: position,
-        icon: types[type] && types[type].iconColor
-      })
+    return new google.maps.Marker({
+      map: map,
+      clickable: false,
+      position: position,
+      icon: types[type] && types[type].iconColor
+    })
   }
 
   function getFeatures(category, type, bounds) {
@@ -52,7 +55,7 @@ $(function(){
       url : url,
       dataType: 'xml'
     }).done(function (xml) {
-      var resultObjects = $(xml).find('node').map(function (node) {
+      resultObjects = $(xml).find('node').map(function (node) {
         var latLng = new google.maps.LatLng(parseFloat(this.getAttribute('lat')), parseFloat(this.getAttribute('lon')));
         return {
           type: category + '=' + type,
@@ -74,6 +77,14 @@ $(function(){
     return deferred;
   }
 
+  function updateMapObjects() {
+    var mapBounds = map.getBounds();
+    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
+    getFeatures('amenity', 'pub', mapBounds);
+    getFeatures('amenity', 'fast_food', mapBounds);
+    getFeatures('amenity', 'place_of_worship', mapBounds);
+  }
+
   map = new google.maps.Map(mapElement, {
     center:    center,
     zoom:      15,
@@ -81,7 +92,13 @@ $(function(){
   });
   createMarker(center, true);
   google.maps.event.addListener(map, 'center_changed', function() {
-
+    var mapCenter = map.getCenter(),
+        mapBounds = map.getBounds();
+    features = features.filter(function(featureObj) {
+      return mapBounds.contains(featureObj.latLng);
+    });
+    updateMapObjects();
+    localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
   });
 
   var Synth = function(audiolet, featureObj) {
@@ -138,11 +155,5 @@ $(function(){
     });
   };
 
-  setTimeout(function(){
-    var mapBounds = map.getBounds();
-    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
-    getFeatures('amenity', 'pub', mapBounds);
-    getFeatures('amenity', 'fast_food', mapBounds);
-    getFeatures('amenity', 'place_of_worship', mapBounds);
-  }, 500)
+  setTimeout(updateMapObjects, 1000);
 });
