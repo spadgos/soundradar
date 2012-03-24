@@ -6,12 +6,12 @@ $(function(){
       mapElement = document.getElementById("map_canvas"),
       center = new google.maps.LatLng(52.371, 4.895);
 
-  function getMarker(position) {
-      new google.maps.Marker({
+  function createMarker(position, bigIcon) {
+      return new google.maps.Marker({
         map: map,
         clickable: false,
         position: position,
-        icon: 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png'
+        icon: bigIcon ? undefined : 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png'
       })
   }
 
@@ -36,10 +36,14 @@ $(function(){
         return {
           type: category + '=' + type,
           latLng: latLng,
-          heading: computeHeading(boundsCenter, latLng),
+          heading: (computeHeading(boundsCenter, latLng) + 360) % 360,
           distance: computeDistanceBetween(boundsCenter, latLng)
         };
       }).get();
+      features.sort(function(a, b) {
+        return a.heading < b.heading ? -1 : 1;
+      });
+      console.log(features);
       deferred.resolve(features);
     }).fail(deferred.reject);
 
@@ -55,11 +59,15 @@ $(function(){
     zoom:      15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+  createMarker(center, true);
 
   setTimeout(function(){
     getFeatures('amenity', 'bar', getMapBounds()).done(function(features){
       features.forEach(function(featureObj){
-        var featureMarker = getMarker(featureObj.latLng);
+        var featureMarker = createMarker(featureObj.latLng);
+        google.maps.event.addListener(featureMarker, 'click', function() {
+          console.log(featureObj.heading, featureObj.distance);
+        });
       });
 
     });
