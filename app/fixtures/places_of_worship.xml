@@ -1,5 +1,3 @@
-
-<?xml version='1.0' encoding='UTF-8'?>
 <osm version="0.6" generator="Osmosis SNAPSHOT-r26564">
   <node id="117916525" version="11" timestamp="2010-03-14T22:47:59Z" uid="175600" user="grossing" changeset="4129255" lat="52.3678351" lon="4.8881839">
     <tag k="religion" v="christian"/>
