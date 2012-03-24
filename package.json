@@ -1,0 +1,15 @@
+{
+  "author": "Nick Fisher, Alexander Kovalev",
+  "name": "soundradar",
+  "version": "7.2.18",
+  "engines": {
+    "node": "~v0.6.6"
+  },
+  "dependencies": {
+    "config": "https://github.com/goldjunge/node-config/tarball/v0.2.9",
+    "connect": "~>1.8.2",
+    "mountable-proxy": "~>0.0.8",
+    "paperboy": "https://github.com/felixge/node-paperboy/tarball/master"
+  },
+  "devDependencies": {}
+}

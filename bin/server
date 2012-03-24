@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+/*globals Buffer */
+// imports
+var connect   = require('connect');
+var paperboy  = require('paperboy');
+var proxy     = require('mountable-proxy');
+var config  = require('config');
+
+var httpServer    = connect.createServer();
+
+var httpConf = config('http', {
+  port: 2403,
+  host: '0.0.0.0',
+  defaultFile: '/index.html'
+});
+
+var apiProxyConf = config('proxy', {
+  host: 'open.mapquestapi.com'
+});
+
+var apiProxy = proxy.createProxy(apiProxyConf);
+
+var fileConf = config('file', {
+  expires: -1,
+  staticDir: 'app'
+});
+
+function deliverStatic(request, response) {
+  paperboy.deliver(fileConf.staticDir, request, response)
+    .addHeader('Expires', parseInt(fileConf.expires, 10) * 1000)
+    .otherwise(function(error) {
+      var body = 'Error 404: File not found';
+
+      response.writeHead(404, {
+        'content-length': body.length,
+        'content-type': 'text/plain'
+      });
+      response.end(body);
+    })
+    .error(function(statusCode, error) {
+      var body = 'Error ' + statusCode;
+
+      response.writeHead(statusCode, {
+        'content-length': body.length,
+        'content-type': 'text/plain'
+      });
+      response.end(body);
+    });
+}
+
+function serveHTTP(app) {
+  app.all(/xapi/, function(request, response, next) {
+    console.log('foo');
+    apiProxy.http(request, response);
+  });
+  app.get(/./, function(request, response, next) {
+    //if (!routes['static'].test(request.url)) {
+    //  request.url = httpConf.defaultFile;
+    //}
+    deliverStatic(request, response);
+  });
+}
+
+httpServer.use(connect.logger({
+  format: 'dev'
+}));
+
+// bindings
+httpServer
+  .use(connect.router(serveHTTP))
+  .listen(httpConf.port, httpConf.host, function() {
+      console.log('HTTP Server running at http://%s:%d', httpConf.host, httpConf.port);
+  });
