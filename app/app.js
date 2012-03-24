@@ -1,6 +1,13 @@
-function getFeatures(category, type, longW, latS, longE, latN) {
+function getFeatures(category, type, bounds) {
+  var ne = bounds.getNorthEast(),
+      sw = bounds.getSouthWest(),
+      n = ne.lat(),
+      e = ne.lng(),
+      s = sw.lat(),
+      w = sw.lng();
+
   var deferred = $.Deferred();
-  var url = CONFIG.api + '/node[' + category + '=' + type + '][bbox=' + [longW, latS, longE, latN].join(',') + ']';
+  var url = CONFIG.api + '/node[' + category + '=' + type + '][bbox=' + [w, s, e, n].join(',') + ']';
 
   $.ajax({
     url : url,
