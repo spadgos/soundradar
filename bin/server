@@ -9,7 +9,7 @@ var config  = require('config');
 var httpServer    = connect.createServer();
 
 var httpConf = config('http', {
-  port: 2403,
+  port: process.env.PORT || 2403,
   host: '0.0.0.0',
   defaultFile: '/index.html'
 });
