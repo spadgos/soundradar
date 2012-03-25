@@ -14,6 +14,7 @@ $(function(){
       },
       colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'black', 'white', 'gray'],
       distanceFactor,
+      selectedType,
       types = {
         'amenity=parking': {},
         'amenity=school': {},
@@ -74,24 +75,44 @@ $(function(){
   allTypes.forEach(function (type, index) {
     types[type] = {
       octave: Math.floor(Math.random() * 6 + 2),
-      icon: icon(colors[index % colors.length])
+      attack: Math.floor(Math.pow(Math.random(), 2) * 30) / 10,
+      release: Math.floor(Math.pow(Math.random(), 2) * 30) / 10,
+      icon: colors[index % colors.length],
+      added: false
     };
     $('#featureSelect').append($('<option>')
       .text(type)
       .val(type)
     );
   });
+  $('#featureSelect').change(function () {
+    var type = types[selectedType = $(this).val()];
+    $('#octave').val(type.octave);
+    $('#attack').val(type.attack);
+    $('#release').val(type.release);
+    $('#color').val(type.icon);
+    $('#addLabel').toggle(!type.added);
+  }).trigger('change');
   $('#add').click(function (e) {
     e.preventDefault();
     var type = $('#featureSelect').val();
-    types[type] = {
-      octave: parseInt($('#octave').val(), 10),
-      attack: parseFloat($('#attack').val()),
-      release: parseFloat($('#release').val()),
-      icon: icon($('#color').val())
-    };
+    $('#addLabel').hide();
+    types[type].added = true;
     addFeature(type);
   });
+  $('#octave').change(function () {
+    console.log(types[selectedType].octave = parseInt(this.value, 10));
+  });
+  $('#attack').change(function () {
+    types[selectedType].attack = parseFloat(this.value);
+  });
+  $('#release').change(function () {
+    types[selectedType].release = parseFloat(this.value);
+  });
+  $('#color').change(function () {
+    types[selectedType].icon = $(this).val();
+  });
+
   $('#play').click(function (e) {
     e.preventDefault();
     audiolet.scheduler.setTempo(parseInt($('#bpm').val(), 10));
@@ -114,7 +135,7 @@ $(function(){
       map: map,
       clickable: false,
       position: position,
-      icon: types[type] && types[type].icon
+      icon: types[type] && icon(types[type].icon)
     });
   }
 
@@ -198,7 +219,7 @@ $(function(){
     this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, .1, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
-        featureObj.marker.setIcon(types[featureObj.type].icon);
+        featureObj.marker.setIcon(icon(types[featureObj.type].icon));
       }.bind(this));
     }.bind(this));
     this.modulator.connect(this.modulatorMulAdd);
