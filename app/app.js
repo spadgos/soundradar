@@ -110,7 +110,15 @@ $(function(){
     types[selectedType].release = parseFloat(this.value);
   });
   $('#color').change(function () {
-    types[selectedType].icon = $(this).val();
+    var t = types[selectedType];
+    t.icon = $(this).val();
+    if (t.added) {
+      features.forEach(function (featureObj) {
+        if (featureObj.type === selectedType) {
+          featureObj.marker.setIcon(icon(t.icon));
+        }
+      });
+    }
   });
 
   $('#play').click(function (e) {
