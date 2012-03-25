@@ -472,7 +472,7 @@ $(function(){
     ctx.arc(centerX, centerY, radius, startAngleFactor*Math.PI, endAngleFactor*Math.PI);
     ctx.lineTo(centerX,centerY);
     ctx.fill();
-    drawSonar.delta += 0.0025;
+    drawSonar.delta += 0.0023;
     drawSonar.delta = drawSonar.delta > 2 ? 0 : drawSonar.delta;
   }
 
