@@ -379,7 +379,7 @@ $(function(){
     $('#play').addClass('sc-button-selected');
     var durations = [],
         delta, i, l;
-
+    durations.push(features[0].heading / 10);
     for (i = 0, l = features.length; i < l; i++) {
       if (i === l - 1) {
         delta = 360 - features[i].heading;
@@ -390,8 +390,11 @@ $(function(){
     }
     durations.push(1);
     var dSeq = new PSequence(durations);
-    nowPlaying = [new PSequence(features.concat(0xDEADBEEF))];
+    nowPlaying = [new PSequence([0xCAFEBABE].concat(features, [0xDEADBEEF]))];
     audiolet.scheduler.play(nowPlaying, dSeq, function(featureObj) {
+      if (featureObj === 0xCAFEBABE) {
+        return;
+      }
       if (featureObj === 0xDEADBEEF) {
         pause();
         return;
@@ -473,12 +476,12 @@ $(function(){
     ctx.clearRect(0, 0, width, height);
     sonarCanvas.width = sonarCanvas.width;
 
-    ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+    ctx.fillStyle = "rgba(0, 0, 255, 0.15)";
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, radius, startAngleFactor*Math.PI, endAngleFactor*Math.PI);
     ctx.lineTo(centerX,centerY);
     ctx.fill();
-    drawSonar.delta += 0.0023;
+    drawSonar.delta += 0.00235;
     drawSonar.delta = drawSonar.delta > 2 ? 0 : drawSonar.delta;
   }
 
@@ -490,7 +493,7 @@ $(function(){
   function stopSonar() {
     webkitCancelRequestAnimationFrame(animationLoop);
     sonarCanvas.style.display = 'none';
-    startSonar.delta = 0;
+    drawSonar.delta = 0;
   }
 
 });
