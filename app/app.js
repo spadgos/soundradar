@@ -182,7 +182,7 @@ $(function(){
 
   function addFeature(type) {
     var mapBounds = map.getBounds();
-    // calculateDistanceFactor();
+     calculateDistanceFactor();
     return getFeatures(type, mapBounds).done(function () {
       $('#addLabel').show('slow');
       $('#playLabel').show('slow');
