@@ -80,6 +80,7 @@ $(function(){
       octave: Math.floor(Math.random() * 6 + 2),
       attack: Math.max(0.05, Math.floor(Math.pow(Math.random(), 3) * 30) / 10),
       release: Math.max(0.05, Math.floor(Math.pow(Math.random(), 3) * 30) / 10),
+      gain: 0.7,
       icon: colors[index % colors.length],
       added: false
     };
@@ -99,8 +100,10 @@ $(function(){
     $('#octave').val(type.octave);
     $('#attack').val(type.attack);
     $('#release').val(type.release);
+    $('#gain').val(type.gain);
     $('#color').val(type.icon);
-    $('#addLabel').toggle(!type.added, 'slow');
+    $('#add').toggle(!type.added, 'slow');
+    $('#remove').toggle(type.added);
   }).trigger('change');
 
 
@@ -108,16 +111,28 @@ $(function(){
     e.preventDefault();
     var type = $('#featureSelect').val();
     $('#addLabel').hide();
+    $(this).hide();
+    $('#remove').show();
     types[type].added = true;
     addFeature(type).done(function () {
+      $('#addLabel').show('slow');
       $('#playLabel').show('slow');
     });
+  });
+  $('#remove').click(function (e) {
+    e.preventDefault();
+    remove(selectedType);
+    $('#remove').hide();
+    $('#add').show();
   });
   $('#octave').on('input', function () {
     types[selectedType].octave = parseInt(this.value, 10);
   });
   $('#attack').on('input', function () {
     types[selectedType].attack = parseFloat(this.value);
+  });
+  $('#gain').on('input', function () {
+    types[selectedType].gain = parseFloat(this.value);
   });
   $('#release').on('input', function () {
     types[selectedType].release = parseFloat(this.value);
@@ -184,6 +199,24 @@ $(function(){
     features.sort(function(a, b) {
       return a.heading < b.heading ? -1 : 1;
     });
+  }
+
+  function remove(type) {
+    var featureObj,
+        kill = function (f) {
+          return function () {
+            f.marker.setMap(null);
+          };
+        };
+    for (var i = features.length; i--;) {
+      featureObj = features[i];
+      if (featureObj.type === type) {
+        features.splice(i, 1);
+        featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(kill(featureObj), 1125);
+      }
+    }
+    types[type].added = false;
   }
 
   function getFeatures(type, bounds) {
@@ -310,7 +343,7 @@ $(function(){
     this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2, frequency);
 
     this.gain = new Gain(this.audiolet);
-    this.envelope = new PercussiveEnvelope(this.audiolet, 1, type.attack, type.release, function() {
+    this.envelope = new PercussiveEnvelope(this.audiolet, type.gain, type.attack, type.release, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
         featureObj.marker.setAnimation(null);
