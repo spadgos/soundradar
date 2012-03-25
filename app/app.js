@@ -105,7 +105,7 @@ $(function(){
     });
   });
   $('#octave').on('input', function () {
-    console.log(types[selectedType].octave = parseInt(this.value, 10));
+    types[selectedType].octave = parseInt(this.value, 10);
   });
   $('#attack').on('input', function () {
     types[selectedType].attack = parseFloat(this.value);
@@ -149,6 +149,7 @@ $(function(){
       map: map,
       clickable: false,
       position: position,
+      animation: google.maps.Animation.DROP,
       icon: types[type] && icon(types[type].icon)
     });
   }
@@ -246,7 +247,6 @@ $(function(){
     this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, .1, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
-        featureObj.marker.setIcon(icon(types[featureObj.type].icon));
       }.bind(this));
     }.bind(this));
     this.modulator.connect(this.modulatorMulAdd);
@@ -277,7 +277,10 @@ $(function(){
     var dSeq = new PSequence(durations);
     var fSeq = new PSequence(features);
     audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
-      featureObj.marker.setIcon('http://www.google.com/mapfiles/dd-start.png');
+      featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function () {
+        featureObj.marker.setAnimation(null);
+      }, 750);
       var synth = new Synth(audiolet, featureObj);
       synth.connect(audiolet.output);
     });

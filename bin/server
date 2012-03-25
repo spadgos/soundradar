@@ -50,14 +50,6 @@ function deliverStatic(request, response) {
 
 function serveHTTP(app) {
   app.all(/xapi/, function(request, response, next) {
-    //if ((/(=pub)/).test(request.url)) {
-    //  request.url = '/fixtures/pubs.xml';
-    //} else if ((/fast_food/).test(request.url)) {
-    //  request.url = '/fixtures/fast_food.xml';
-    //} else {
-    //  request.url = '/fixtures/places_of_worship.xml';
-    //}
-    //deliverStatic(request, response);
     apiProxy.http(request, response);
   });
   app.get(/./, function(request, response, next) {

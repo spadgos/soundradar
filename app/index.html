@@ -48,48 +48,51 @@
 <body>
   <div id="map_canvas"></div>
   <div id="panel">
-    <label>
-      <span>Feature</span>
-      <select id="featureSelect"></select>
-    </label>
-    <label>
-      <span>Octave</span>
-      <input id="octave" type="number" step="1" value="4" min="1" max="8"/>
-    </label>
-    <label>
-      <span>Attack</span>
-      <input id="attack" type="number" step=".1" value=".2" min="0" max="10"/>
-    </label>
-    <label>
-      <span>Release</span>
-      <input id="release" type="number" step=".1" value=".4" min="0" max="10"/>
-    </label>
-    <label>
-      <span>Colour</span>
-      <select id="color">
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="yellow">Yellow</option>
-        <option value="orange">Orange</option>
-        <option value="purple">Purple</option>
-        <option value="brown">Brown</option>
-        <option value="black">Black</option>
-        <option value="white">White</option>
-        <option value="gray">Gray</option>
-      </select>
-    <label id="addLabel" class="center">
-      <button id="add" class="sc-button sc-button-large">Add</button>
-    </label>
-    <label id="loading" class="center">Loading...</label>
-    <hr />
-    <label>
-      <span>BPM</span>
-      <input id="bpm" type="number" value="120" step="5" />
-    </label>
-    <label id="playLabel" class="center">
-      <button id="play" class="sc-button sc-button-large">Play</button>
-    </label>
+    <h1>SoundRadar</h1>
+    <fieldset>
+      <label>
+        <span>Feature</span>
+        <select id="featureSelect"></select>
+      </label>
+      <label>
+        <span>Octave</span>
+        <input id="octave" type="number" step="1" value="4" min="1" max="8"/>
+      </label>
+      <label>
+        <span>Attack</span>
+        <input id="attack" type="number" step=".1" value=".2" min="0" max="10"/>
+      </label>
+      <label>
+        <span>Release</span>
+        <input id="release" type="number" step=".1" value=".4" min="0" max="10"/>
+      </label>
+      <label>
+        <span>Colour</span>
+        <select id="color">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="orange">Orange</option>
+          <option value="purple">Purple</option>
+          <option value="brown">Brown</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="gray">Gray</option>
+        </select>
+      <label id="addLabel" class="center">
+        <button id="add" class="sc-button sc-button-large">Add</button>
+      </label>
+      <label id="loading" class="center">Loading...</label>
+      <hr />
+      <label>
+        <span>BPM</span>
+        <input id="bpm" type="number" value="120" step="5" />
+      </label>
+      <label id="playLabel" class="center">
+        <button id="play" class="sc-button sc-button-large">Play</button>
+      </label>
+    </fieldset>
   </div>
   <script src="app.js"></script>
 </body>
