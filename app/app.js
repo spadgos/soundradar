@@ -88,6 +88,12 @@ $(function(){
       .val(type)
     );
   });
+
+  /////////////
+  // UI SHIT //
+  /////////////
+  $('#playLabel').hide();
+
   $('#featureSelect').change(function () {
     var type = types[selectedType = $(this).val()];
     $('#octave').val(type.octave);
@@ -96,7 +102,8 @@ $(function(){
     $('#color').val(type.icon);
     $('#addLabel').toggle(!type.added, 'slow');
   }).trigger('change');
-  $('#playLabel').hide();
+
+
   $('#add').click(function (e) {
     e.preventDefault();
     var type = $('#featureSelect').val();
@@ -134,11 +141,17 @@ $(function(){
     e.preventDefault();
     play();
   });
+  $('#pause').click(function (e) {
+    e.preventDefault();
+    pause();
+  });
   $('#loading').ajaxStart(function () {
     $(this).show();
   }).ajaxStop(function () {
     $(this).hide();
   }).hide();
+
+  ////////////////////////////////////////////
 
   function addFeature(type) {
     var mapBounds = map.getBounds();
@@ -241,8 +254,12 @@ $(function(){
     sortFeatures();
     localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
   });
-
+  var nowPlaying;
   function play() {
+    if ($('#play').hasClass('sc-button-selected')) {
+      return;
+    }
+    $('#play').addClass('sc-button-selected');
     var durations = [],
         delta, i, l;
 
@@ -254,12 +271,21 @@ $(function(){
       }
       durations.push(delta/10);
     }
-
+    durations.push(1);
     var dSeq = new PSequence(durations);
-    var fSeq = new PSequence(features);
-    audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
+    nowPlaying = [new PSequence(features.concat(0xDEADBEEF))];
+    audiolet.scheduler.play(nowPlaying, dSeq, function(featureObj) {
+      if (featureObj === 0xDEADBEEF) {
+        pause();
+        return;
+      }
       playNote(featureObj);
     });
+  }
+
+  function pause() {
+    $('#play').removeClass('sc-button-selected');
+    nowPlaying[0].list = []; // cheating? yes.
   }
 
   function playNote(featureObj) {
