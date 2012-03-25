@@ -82,7 +82,7 @@ $(function(){
       added: false
     };
     $('#featureSelect').append($('<option>')
-      .text(type)
+      .text(type.replace(/^.*=/, '').replace(/_/g, ' ').replace(/\b[a-z]/, function (chr) { return chr.toUpperCase(); }))
       .val(type)
     );
   });
