@@ -244,10 +244,10 @@ $(function(){
 
   function play() {
     var durations = [],
-        delta;
+        delta, i, l;
 
-    for (var i = 0, l = features.length; i < l; i++) {
-      if ( i === l - 1) {
+    for (i = 0, l = features.length; i < l; i++) {
+      if (i === l - 1) {
         delta = 360 - features[i].heading;
       } else {
         delta = features[i+1].heading - features[i].heading;
@@ -271,7 +271,7 @@ $(function(){
   var Synth = function(audiolet, featureObj) {
 
     this.featureObj = featureObj;
-    type = types[featureObj.type];
+    var type = types[featureObj.type];
     this.note = Math.floor((1 - featureObj.distance / distanceFactor) * 12);
     this.scale = new MajorScale();
     this.octave = types[featureObj.type].octave;
