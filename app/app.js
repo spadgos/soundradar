@@ -127,7 +127,7 @@ $(function(){
 
   function addFeature(type) {
     var mapBounds = map.getBounds();
-    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
+    calculateDistanceFactor();
     return getFeatures(type, mapBounds);
   }
 
@@ -137,6 +137,17 @@ $(function(){
       clickable: false,
       position: position,
       icon: types[type] && icon(types[type].icon)
+    });
+  }
+
+  function calculateDistanceFactor() {
+    var mapBounds = map.getBounds();
+    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
+  }
+
+  function sortFeatures() {
+    features.sort(function(a, b) {
+      return a.heading < b.heading ? -1 : 1;
     });
   }
 
@@ -167,9 +178,7 @@ $(function(){
         };
       }).get();
       features.splice.apply(features, [features.length, 0].concat(resultObjects));
-      features.sort(function(a, b) {
-        return a.heading < b.heading ? -1 : 1;
-      });
+      sortFeatures();
       resultObjects.forEach(function(featureObj) {
         featureObj.marker = createMarker(featureObj.latLng, featureObj.type);
       });
@@ -177,11 +186,6 @@ $(function(){
     }).fail(deferred.reject);
 
     return deferred;
-  }
-
-  function updateMapObjects() {
-    var mapBounds = map.getBounds();
-    distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
   }
 
   map = new google.maps.Map(mapElement, {
@@ -193,12 +197,18 @@ $(function(){
   google.maps.event.addListener(map, 'center_changed', function() {
     var mapCenter = map.getCenter(),
         mapBounds = map.getBounds();
+
+    calculateDistanceFactor();
+    centerMarker.setPosition(mapCenter);
     features = features.filter(function(featureObj) {
       return mapBounds.contains(featureObj.latLng);
     });
-    updateMapObjects();
+    features.forEach(function(featureObj) {
+      featureObj.heading = (computeHeading(mapCenter, featureObj.latLng) + 360) % 360;
+      featureObj.distance = computeDistanceBetween(mapCenter, featureObj.latLng);
+    });
+    sortFeatures();
     localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
-    centerMarker.setPosition(mapCenter);
   });
 
   var Synth = function(audiolet, featureObj) {
@@ -255,6 +265,4 @@ $(function(){
     });
   }
   window.play = play;
-
-  setTimeout(updateMapObjects, 1000);
 });
