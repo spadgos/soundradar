@@ -9,8 +9,10 @@ $(function(){
       centerMarker,
       features = [],
       mapElement = document.getElementById("map_canvas"),
+      sonarCanvas = document.getElementById("sonar"),
       centerCoords = localStorage.getItem('center') ? JSON.parse(localStorage.getItem('center')) : [52.371, 4.895],
       center = new google.maps.LatLng(centerCoords[0], centerCoords[1]),
+      animationLoop,
       audiolet = new Audiolet(),
       icon = function (color) {
         return 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_' + color + '.png';
@@ -105,7 +107,6 @@ $(function(){
     $('#add').toggle(!type.added, 'slow');
     $('#remove').toggle(type.added);
   }).trigger('change');
-
 
   $('#add').click(function (e) {
     e.preventDefault();
@@ -267,33 +268,6 @@ $(function(){
     return deferred;
   }
 
-  map = new google.maps.Map(mapElement, {
-    center:    center,
-    zoom:      15,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  centerMarker = createMarker(center, false);
-  google.maps.event.addListener(map, 'center_changed', function() {
-    var mapCenter = map.getCenter(),
-        mapBounds = map.getBounds();
-
-    calculateDistanceFactor();
-    centerMarker.setPosition(mapCenter);
-    features = features.filter(function(featureObj) {
-      if (mapBounds.contains(featureObj.latLng)) {
-        return true;
-      } else {
-        featureObj.marker.setMap(null);
-        return false;
-      }
-    });
-    features.forEach(function(featureObj) {
-      featureObj.heading = (computeHeading(mapCenter, featureObj.latLng) + 360) % 360;
-      featureObj.distance = computeDistanceBetween(mapCenter, featureObj.latLng);
-    });
-    sortFeatures();
-    localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
-  });
   var nowPlaying;
   function play() {
     if ($('#play').hasClass('sc-button-selected')) {
@@ -321,11 +295,13 @@ $(function(){
       }
       playNote(featureObj);
     });
+    startSonar();
   }
 
   function pause() {
     $('#play').removeClass('sc-button-selected');
     nowPlaying[0].list = []; // cheating? yes.
+    stopSonar();
   }
 
   function playNote(featureObj) {
@@ -368,5 +344,75 @@ $(function(){
   Synth.prototype.getFrequency = function() {
     return this.scale.getFrequency(this.note, 16.352, this.octave);
   };
+
+  /*==================================================================*/
+  map = new google.maps.Map(mapElement, {
+    center:    center,
+    zoom:      15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  centerMarker = createMarker(center, false);
+  google.maps.event.addListener(map, 'center_changed', function() {
+    var mapCenter = map.getCenter(),
+        mapBounds = map.getBounds();
+
+    audiolet.output.scheduler.disconnect();
+    calculateDistanceFactor();
+    centerMarker.setPosition(mapCenter);
+    features = features.filter(function(featureObj) {
+      if (mapBounds.contains(featureObj.latLng)) {
+        return true;
+      } else {
+        featureObj.marker.setMap(null);
+        return false;
+      }
+    });
+    features.forEach(function(featureObj) {
+      featureObj.heading = (computeHeading(mapCenter, featureObj.latLng) + 360) % 360;
+      featureObj.distance = computeDistanceBetween(mapCenter, featureObj.latLng);
+    });
+    sortFeatures();
+    localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
+  });
+  createSonar();
+
+  function createSonar() {
+    sonarCanvas.setAttribute('width', mapElement.offsetWidth);
+    sonarCanvas.setAttribute('height', mapElement.offsetHeight);
+  }
+
+  function drawSonar() {
+    sonarCanvas.style.display = 'block';
+    drawSonar.delta = drawSonar.delta || 0;
+    var width = sonarCanvas.offsetWidth;
+    var height = sonarCanvas.offsetHeight;
+    var centerX = width/2;
+    var centerY = height/2;
+    var startAngleFactor = (1.5 + drawSonar.delta)%2;
+    var endAngleFactor = (1.7 + drawSonar.delta)%2;
+    var radius = Math.max(sonarCanvas.offsetHeight, sonarCanvas.offsetWidth)/2;
+    var ctx = sonarCanvas.getContext('2d');
+
+    ctx.clearRect(0, 0, width, height);
+    sonarCanvas.width = sonarCanvas.width;
+
+    ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, radius, startAngleFactor*Math.PI, endAngleFactor*Math.PI);
+    ctx.lineTo(centerX,centerY);
+    ctx.fill();
+    drawSonar.delta += 0.0018;
+    drawSonar.delta = drawSonar.delta > 2 ? 0 : drawSonar.delta;
+  }
+
+  function startSonar() {
+    animationLoop = webkitRequestAnimationFrame(startSonar);
+    drawSonar();
+  }
+
+  function stopSonar() {
+    webkitCancelRequestAnimationFrame(animationLoop);
+    sonarCanvas.style.display = 'none';
+  }
 
 });
