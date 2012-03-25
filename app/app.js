@@ -78,8 +78,8 @@ $(function(){
   allTypes.forEach(function (type, index) {
     types[type] = {
       octave: Math.floor(Math.random() * 6 + 2),
-      attack: Math.floor(Math.pow(Math.random(), 2) * 30) / 10,
-      release: Math.floor(Math.pow(Math.random(), 2) * 30) / 10,
+      attack: Math.max(0.05, Math.floor(Math.pow(Math.random(), 3) * 30) / 10),
+      release: Math.max(0.05, Math.floor(Math.pow(Math.random(), 3) * 30) / 10),
       icon: colors[index % colors.length],
       added: false
     };
@@ -115,7 +115,7 @@ $(function(){
   $('#release').on('input', function () {
     types[selectedType].release = parseFloat(this.value);
   });
-  $('#color').on('input', function () {
+  $('#color').on('change', function () {
     var t = types[selectedType];
     t.icon = $(this).val();
     if (t.added) {
@@ -205,6 +205,7 @@ $(function(){
         featureObj.marker = createMarker(featureObj.latLng, featureObj.type);
         google.maps.event.addListener(featureObj.marker, 'click', function() {
           playNote(featureObj);
+          $('#featureSelect').val(featureObj.type).trigger('change');
         });
       });
       deferred.resolve(resultObjects);
@@ -243,21 +244,24 @@ $(function(){
   var Synth = function(audiolet, featureObj) {
 
     this.featureObj = featureObj;
-    this.note = Math.floor((1 - featureObj.distance/distanceFactor)* 12),
+    type = types[featureObj.type];
+    this.note = Math.floor((1 - featureObj.distance / distanceFactor) * 12);
     this.scale = new MajorScale();
     this.octave = types[featureObj.type].octave;
 
     var frequency = this.getFrequency();
 
     AudioletGroup.apply(this, [audiolet, 0, 1]);
-    this.sine = new Square(this.audiolet, frequency);
-    this.modulator = new Pulse(this.audiolet, frequency * 2);
+    this.sine = new Triangle(this.audiolet, frequency);
+    this.modulator = new Square(this.audiolet, frequency * 4);
     this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2, frequency);
 
     this.gain = new Gain(this.audiolet);
-    this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, 0.1, function() {
+    this.envelope = new PercussiveEnvelope(this.audiolet, 1, type.attack, type.release, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
+        featureObj.marker.setAnimation(null);
+
       }.bind(this));
     }.bind(this));
     this.modulator.connect(this.modulatorMulAdd);
@@ -294,9 +298,9 @@ $(function(){
 
   function playNote(featureObj) {
     featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function () {
-      featureObj.marker.setAnimation(null);
-    }, 750);
+    //setTimeout(function () {
+    //  featureObj.marker.setAnimation(null);
+    //}, 750);
     var synth = new Synth(audiolet, featureObj);
     synth.connect(audiolet.output);
   }
