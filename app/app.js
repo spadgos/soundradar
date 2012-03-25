@@ -328,11 +328,11 @@ $(function(){
     map = new google.maps.Map(mapElement, {
       center:    center,
       zoom:      zoom,
-      // mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeId: tileType,
-      mapTypeControlOptions: {
-          mapTypeIds: [tileType]
-      }
+      panControl: false,
+      streetViewControl: false,
+      zoomControl: false,
+      mapTypeControl: false
     });
     map.mapTypes.set(tileType, new google.maps.StamenMapType(tileType));
   }());
