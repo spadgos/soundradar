@@ -4,6 +4,7 @@ $(function(){
   var computeHeading = google.maps.geometry.spherical.computeHeading,
       computeDistanceBetween = google.maps.geometry.spherical.computeDistanceBetween,
       map,
+      centerMarker,
       features = [],
       mapElement = document.getElementById("map_canvas"),
       centerCoords = localStorage.getItem('center') ? JSON.parse(localStorage.getItem('center')) : [52.371, 4.895],
@@ -188,7 +189,7 @@ $(function(){
     zoom:      15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  createMarker(center, true);
+  centerMarker = createMarker(center, true);
   google.maps.event.addListener(map, 'center_changed', function() {
     var mapCenter = map.getCenter(),
         mapBounds = map.getBounds();
@@ -197,6 +198,7 @@ $(function(){
     });
     updateMapObjects();
     localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
+    centerMarker.setPosition(mapCenter);
   });
 
   var Synth = function(audiolet, featureObj) {
