@@ -305,11 +305,10 @@ $(function(){
     var zoom = 15;
     if (window.location.hash.length > 1) {
       var hash = window.location.hash.substr(1),
-          info, i;
-      try {
-        // {"_":[52.371124458365045,4.888959665298436],"amenity=parking":{"o":2,"a":2.6,"r":0.8,"g":0.7,"c":"red"}}
-        info = JSON.parse(hash);
-        for (i in info) {
+          decode;
+      decode = function (h) {
+        var info = JSON.parse(h);
+        for (var i in info) {
           if (i === '_') {
             center = new google.maps.LatLng(info._[0], info._[1]);
             zoom = info._[2];
@@ -323,7 +322,15 @@ $(function(){
             setTimeout(addFeature.bind(null, i), 250);
           }
         }
-      } catch (e) {}
+      };
+      try {
+        // {"_":[52.371124458365045,4.888959665298436],"amenity=parking":{"o":2,"a":2.6,"r":0.8,"g":0.7,"c":"red"}}
+        decode(hash);
+      } catch (e) {
+        try {
+          decode(unescape(hash))
+        } catch (ee) {}
+      }
     }
     map = new google.maps.Map(mapElement, {
       center:    center,
