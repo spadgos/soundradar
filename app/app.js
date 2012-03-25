@@ -144,14 +144,19 @@ $(function(){
     return getFeatures(type, mapBounds);
   }
 
+  var markerQueue = [];
   function createMarker(position, type) {
-    return new google.maps.Marker({
-      map: map,
+    var m = new google.maps.Marker({
       clickable: false,
       position: position,
       animation: google.maps.Animation.DROP,
       icon: types[type] && icon(types[type].icon)
     });
+    markerQueue.push(m);
+    setTimeout(function () {
+      markerQueue.shift().setMap(map);
+    }, Math.log(markerQueue.length) * 200);
+    return m;
   }
 
   function calculateDistanceFactor() {
