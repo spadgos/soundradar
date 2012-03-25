@@ -1,4 +1,6 @@
-/*globals google, Audiolet */
+/*globals google, Audiolet, CONFIG */
+/*globals MajorScale, Square, Pulse, Gain, PercussiveEnvelope, AudioletGroup, MulAdd, extend, PSequence */
+
 $(function(){
 
   var computeHeading = google.maps.geometry.spherical.computeHeading,
@@ -146,11 +148,12 @@ $(function(){
 
   var markerQueue = [];
   function createMarker(position, type) {
+    var isMiddleMarker = !type;
     var m = new google.maps.Marker({
-      clickable: false,
+      clickable: !isMiddleMarker,
       position: position,
       animation: google.maps.Animation.DROP,
-      icon: types[type] && icon(types[type].icon)
+      icon: isMiddleMarker ? null : icon(types[type].icon)
     });
     markerQueue.push(m);
     setTimeout(function () {
@@ -200,6 +203,9 @@ $(function(){
       sortFeatures();
       resultObjects.forEach(function(featureObj) {
         featureObj.marker = createMarker(featureObj.latLng, featureObj.type);
+        google.maps.event.addListener(featureObj.marker, 'click', function() {
+          playNote(featureObj);
+        });
       });
       deferred.resolve(resultObjects);
     }).fail(deferred.reject);
@@ -212,7 +218,7 @@ $(function(){
     zoom:      15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  centerMarker = createMarker(center, true);
+  centerMarker = createMarker(center, false);
   google.maps.event.addListener(map, 'center_changed', function() {
     var mapCenter = map.getCenter(),
         mapBounds = map.getBounds();
@@ -234,8 +240,8 @@ $(function(){
     sortFeatures();
     localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
   });
-
   var Synth = function(audiolet, featureObj) {
+
     this.featureObj = featureObj;
     this.note = Math.floor((1 - featureObj.distance/distanceFactor)* 12),
     this.scale = new MajorScale();
@@ -249,7 +255,7 @@ $(function(){
     this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2, frequency);
 
     this.gain = new Gain(this.audiolet);
-    this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, .1, function() {
+    this.envelope = new PercussiveEnvelope(this.audiolet, 1, 0.2, 0.1, function() {
       this.audiolet.scheduler.addRelative(0, function() {
         this.remove();
       }.bind(this));
@@ -282,13 +288,17 @@ $(function(){
     var dSeq = new PSequence(durations);
     var fSeq = new PSequence(features);
     audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
-      featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
-      setTimeout(function () {
-        featureObj.marker.setAnimation(null);
-      }, 750);
-      var synth = new Synth(audiolet, featureObj);
-      synth.connect(audiolet.output);
+      playNote(featureObj);
     });
+  }
+
+  function playNote(featureObj) {
+    featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function () {
+      featureObj.marker.setAnimation(null);
+    }, 750);
+    var synth = new Synth(audiolet, featureObj);
+    synth.connect(audiolet.output);
   }
   window.play = play;
 });
