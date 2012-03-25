@@ -21,7 +21,7 @@ var apiProxyConf = config('proxy', {
 var apiProxy = proxy.createProxy(apiProxyConf);
 
 var fileConf = config('file', {
-  expires: -1,
+  expires: 0,
   staticDir: 'app'
 });
 

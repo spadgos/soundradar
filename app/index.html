@@ -23,12 +23,16 @@
       background-color: white;
       padding: 15px;
     }
-    #map_canvas {
+    #map_canvas,
+    #sonar {
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
       right: 230px;
+    }
+    #sonar {
+      display: none;
     }
     label {
       margin-bottom: 1em;
@@ -85,10 +89,12 @@
       width: 400px;
       margin-left: -200px;
     }
+
   </style>
 </head>
 <body>
   <div id="map_canvas"></div>
+  <canvas id="sonar"></canvas>
   <div id="panel">
     <h1>CitySonar</h1>
     <div id="byline">
