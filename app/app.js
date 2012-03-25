@@ -191,29 +191,28 @@ $(function(){
 
   function generateLink() {
     var i, type, ret = {}, center = map.getCenter();
-    ret._ = [
+    var out = [];
+    out.push('_=' + [
       center.lat(),
       center.lng(),
       map.getZoom()
-    ];
+    ].join(','));
     for (i in types) {
       if (types.hasOwnProperty(i)) {
         type = types[i];
         if (type.added) {
-          ret[i] = {
-            o: type.octave,
-            a: type.attack,
-            r: type.release,
-            g: type.gain,
-            c: type.icon
-          };
+          out.push(i.replace((/(=)/g), '.') + '=' + [
+            'o:' + type.octave,
+            'a:' + type.attack,
+            'r:' + type.release,
+            'g:' + type.gain,
+            'c:' + type.icon
+          ].join(','));
         }
       }
     }
-    return JSON.stringify(ret);
+    return out.join('&');
   }
-
-  // function parseLink()
 
   var markerQueue = [];
   function createMarker(position, type) {
@@ -307,30 +306,35 @@ $(function(){
       var hash = window.location.hash.substr(1),
           decode;
       decode = function (h) {
-        var info = JSON.parse(h);
-        for (var i in info) {
-          if (i === '_') {
-            center = new google.maps.LatLng(info._[0], info._[1]);
-            zoom = info._[2];
+        // _=52.36845835267243,4.890343685150128,15&amenity.parking=o:3,a:0.1,r:1.1,g:0.7,c:red
+        h.split('&').forEach(function (part) {
+          var p, key = (p = part.split('='))[0], val = p[1], parts;
+          if (key === '_') {
+            parts = val.split(',').map(parseFloat);
+            center = new google.maps.LatLng(parts[0], parts[1]);
+            zoom = parts[2];
           } else {
-            types[i].attack = info[i].a;
-            types[i].release = info[i].r;
-            types[i].octave = info[i].o;
-            types[i].gain = info[i].g;
-            types[i].icon = info[i].c;
-            types[i].added = true;
-            setTimeout(addFeature.bind(null, i), 250);
+            key = key.replace(/\./g, '=');
+            val.split(',').forEach(function (keyVal) {
+              var iParts = keyVal.split(':'),
+                  iKey = iParts[0],
+                  iVal = iParts[1],
+                  typeKey = ({
+                    a: 'attack',
+                    r: 'release',
+                    o: 'octave',
+                    g: 'gain',
+                    c: 'icon'
+                  })[iKey];
+              types[key][typeKey] = iKey === 'c' ? iVal : parseFloat(iVal);
+            });
+            types[key].added = true;
+            setTimeout(addFeature.bind(null, key), 250);
           }
-        }
+          $('#featureSelect').trigger('change');
+        });
       };
-      try {
-        // {"_":[52.371124458365045,4.888959665298436],"amenity=parking":{"o":2,"a":2.6,"r":0.8,"g":0.7,"c":"red"}}
-        decode(hash);
-      } catch (e) {
-        try {
-          decode(unescape(hash))
-        } catch (ee) {}
-      }
+      decode(hash);
     }
     map = new google.maps.Map(mapElement, {
       center:    center,
