@@ -181,9 +181,6 @@ $(function(){
   function updateMapObjects() {
     var mapBounds = map.getBounds();
     distanceFactor = computeDistanceBetween(mapBounds.getNorthEast(), mapBounds.getSouthWest()) / 2;
-    getFeatures('amenity', 'pub', mapBounds);
-    getFeatures('amenity', 'fast_food', mapBounds);
-    getFeatures('amenity', 'place_of_worship', mapBounds);
   }
 
   map = new google.maps.Map(mapElement, {
