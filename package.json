@@ -1,7 +1,7 @@
 {
   "author": "Nick Fisher, Alexander Kovalev",
-  "name": "soundradar",
-  "version": "7.2.18",
+  "name": "citysonar",
+  "version": "12.0.118",
   "engines": {
     "node": "~v0.6.6"
   },
