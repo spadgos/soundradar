@@ -6,6 +6,7 @@ $(function(){
   var computeHeading = google.maps.geometry.spherical.computeHeading,
       computeDistanceBetween = google.maps.geometry.spherical.computeDistanceBetween,
       map,
+      tileType = 'toner',
       centerMarker,
       features = [],
       mapElement = document.getElementById("map_canvas"),
@@ -71,7 +72,9 @@ $(function(){
         'power=minor_line': {},
         'power=station': {},
         'power=cable_distribution_cabinet': {},
-        'power=transformer': {}
+        'power=transformer': {},
+        'amenity=brothel': {},
+        'amenity=stripclub': {}
       },
       allTypes = Object.keys(types);
 
@@ -325,8 +328,13 @@ $(function(){
     map = new google.maps.Map(mapElement, {
       center:    center,
       zoom:      zoom,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      // mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeId: tileType,
+      mapTypeControlOptions: {
+          mapTypeIds: [tileType]
+      }
     });
+    map.mapTypes.set(tileType, new google.maps.StamenMapType(tileType));
   }());
   centerMarker = createMarker(center, false);
   google.maps.event.addListener(map, 'center_changed', function() {
