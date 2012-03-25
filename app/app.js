@@ -166,6 +166,13 @@ $(function(){
     $(this).hide();
   }).hide();
 
+  $('#aboutLink').click(function () {
+    $('#about').removeClass('hidden');
+  });
+  $('#about .shade').click(function () {
+    $('#about').addClass('hidden');
+  });
+
   ////////////////////////////////////////////
 
   function addFeature(type) {
