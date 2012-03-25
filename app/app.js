@@ -214,7 +214,12 @@ $(function(){
     calculateDistanceFactor();
     centerMarker.setPosition(mapCenter);
     features = features.filter(function(featureObj) {
-      return mapBounds.contains(featureObj.latLng);
+      if (mapBounds.contains(featureObj.latLng)) {
+        return true;
+      } else {
+        featureObj.marker.setMap(null);
+        return false;
+      }
     });
     features.forEach(function(featureObj) {
       featureObj.heading = (computeHeading(mapCenter, featureObj.latLng) + 360) % 360;
