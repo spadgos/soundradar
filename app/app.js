@@ -1,4 +1,4 @@
-/*globals google, Audiolet, CONFIG */
+/*globals google, Audiolet, CONFIG, Triangle */
 /*globals MajorScale, Square, Pulse, Gain, PercussiveEnvelope, AudioletGroup, MulAdd, extend, PSequence */
 
 $(function(){
@@ -274,7 +274,7 @@ $(function(){
     var type = types[featureObj.type];
     this.note = Math.floor((1 - featureObj.distance / distanceFactor) * 12);
     this.scale = new MajorScale();
-    this.octave = types[featureObj.type].octave;
+    this.octave = type.octave;
 
     var frequency = this.getFrequency();
 
