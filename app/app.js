@@ -241,6 +241,33 @@ $(function(){
     sortFeatures();
     localStorage.setItem('center', JSON.stringify([mapCenter.lat(), mapCenter.lng()]));
   });
+
+  function play() {
+    var durations = [],
+        delta;
+
+    for (var i = 0, l = features.length; i < l; i++) {
+      if ( i === l - 1) {
+        delta = 360 - features[i].heading;
+      } else {
+        delta = features[i+1].heading - features[i].heading;
+      }
+      durations.push(delta/10);
+    }
+
+    var dSeq = new PSequence(durations);
+    var fSeq = new PSequence(features);
+    audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
+      playNote(featureObj);
+    });
+  }
+
+  function playNote(featureObj) {
+    featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
+    var synth = new Synth(audiolet, featureObj);
+    synth.connect(audiolet.output);
+  }
+
   var Synth = function(audiolet, featureObj) {
 
     this.featureObj = featureObj;
@@ -276,33 +303,4 @@ $(function(){
     return this.scale.getFrequency(this.note, 16.352, this.octave);
   };
 
-  function play() {
-    var durations = [],
-        delta;
-
-    for (var i = 0, l = features.length; i < l; i++) {
-      if ( i === l - 1) {
-        delta = 360 - features[i].heading;
-      } else {
-        delta = features[i+1].heading - features[i].heading;
-      }
-      durations.push(delta/10);
-    }
-
-    var dSeq = new PSequence(durations);
-    var fSeq = new PSequence(features);
-    audiolet.scheduler.play([fSeq], dSeq, function(featureObj) {
-      playNote(featureObj);
-    });
-  }
-
-  function playNote(featureObj) {
-    featureObj.marker.setAnimation(google.maps.Animation.BOUNCE);
-    //setTimeout(function () {
-    //  featureObj.marker.setAnimation(null);
-    //}, 750);
-    var synth = new Synth(audiolet, featureObj);
-    synth.connect(audiolet.output);
-  }
-  window.play = play;
 });
