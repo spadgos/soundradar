@@ -91,25 +91,28 @@ $(function(){
     $('#attack').val(type.attack);
     $('#release').val(type.release);
     $('#color').val(type.icon);
-    $('#addLabel').toggle(!type.added);
+    $('#addLabel').toggle(!type.added, 'slow');
   }).trigger('change');
+  $('#playLabel').hide();
   $('#add').click(function (e) {
     e.preventDefault();
     var type = $('#featureSelect').val();
     $('#addLabel').hide();
     types[type].added = true;
-    addFeature(type);
+    addFeature(type).done(function () {
+      $('#playLabel').show('slow');
+    });
   });
-  $('#octave').change(function () {
+  $('#octave').on('input', function () {
     console.log(types[selectedType].octave = parseInt(this.value, 10));
   });
-  $('#attack').change(function () {
+  $('#attack').on('input', function () {
     types[selectedType].attack = parseFloat(this.value);
   });
-  $('#release').change(function () {
+  $('#release').on('input', function () {
     types[selectedType].release = parseFloat(this.value);
   });
-  $('#color').change(function () {
+  $('#color').on('input', function () {
     var t = types[selectedType];
     t.icon = $(this).val();
     if (t.added) {
@@ -120,10 +123,12 @@ $(function(){
       });
     }
   });
+  $('#bpm').on('input', function () {
+    audiolet.scheduler.setTempo(parseInt($('#bpm').val(), 10));
+  });
 
   $('#play').click(function (e) {
     e.preventDefault();
-    audiolet.scheduler.setTempo(parseInt($('#bpm').val(), 10));
     play();
   });
   $('#loading').ajaxStart(function () {

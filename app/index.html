@@ -12,6 +12,7 @@
   <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
   <script src="Audiolet.js"></script>
   <script src="config.js"></script>
+  <link rel="stylesheet" href="http://soundcloud.github.com/sc.css/sc.css" />
   <style type="text/css">
     #panel {
       position: absolute;
@@ -22,7 +23,18 @@
       padding: 15px;
     }
     label {
+      margin-bottom: 1em;
       display: block;
+    }
+    label > span {
+      display: inline-block;
+      width: 80px;
+    }
+    input, select {
+      width: 110px;
+    }
+    .center {
+      text-align: center;
     }
   </style>
 </head>
@@ -30,23 +42,23 @@
   <div id="map_canvas"></div>
   <div id="panel">
     <label>
-      Feature
+      <span>Feature</span>
       <select id="featureSelect"></select>
     </label>
     <label>
-      Octave
+      <span>Octave</span>
       <input id="octave" type="number" step="1" value="4" min="1" max="8"/>
     </label>
     <label>
-      Attack
-      <input id="attack" type="number" step=".1" value=".2" min="0" max="3"/>
+      <span>Attack</span>
+      <input id="attack" type="number" step=".1" value=".2" min="0" max="10"/>
     </label>
     <label>
-      Release
-      <input id="release" type="number" step=".1" value=".4" min="0" max="3"/>
+      <span>Release</span>
+      <input id="release" type="number" step=".1" value=".4" min="0" max="10"/>
     </label>
     <label>
-      Colour
+      <span>Colour</span>
       <select id="color">
         <option value="red">Red</option>
         <option value="green">Green</option>
@@ -59,17 +71,18 @@
         <option value="white">White</option>
         <option value="gray">Gray</option>
       </select>
-    <label id="addLabel">
-      Add
-      <button id="add">Add</button>
+    <label id="addLabel" class="center">
+      <button id="add" class="sc-button sc-button-large">Add</button>
     </label>
-    <label id="loading">Loading...</label>
+    <label id="loading" class="center">Loading...</label>
     <hr />
     <label>
-      BPM
+      <span>BPM</span>
       <input id="bpm" type="number" value="120" step="5" />
     </label>
-    <label><button id="play">Play</button></label>
+    <label id="playLabel" class="center">
+      <button id="play" class="sc-button sc-button-large">Play</button>
+    </label>
   </div>
   <script src="app.js"></script>
 </body>
