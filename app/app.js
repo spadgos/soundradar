@@ -455,42 +455,45 @@ $(function(){
 
   /*==================================================================*/
   createSonar();
+  var sonarStartTime;
 
   function createSonar() {
     sonarCanvas.setAttribute('width', mapElement.offsetWidth);
     sonarCanvas.setAttribute('height', mapElement.offsetHeight);
+    sonarCanvas.style.display = 'block';
+    $(window).on('resize', createSonar);
   }
 
   function drawSonar() {
-    sonarCanvas.style.display = 'block';
     drawSonar.delta = drawSonar.delta || 0;
-    var width = sonarCanvas.offsetWidth;
-    var height = sonarCanvas.offsetHeight;
-    var centerX = width/2;
-    var centerY = height/2;
-    var startAngleFactor = (1.3 + drawSonar.delta)%2;
-    var endAngleFactor = (1.5 + drawSonar.delta)%2;
-    var radius = Math.max(sonarCanvas.offsetHeight, sonarCanvas.offsetWidth)/2;
-    var ctx = sonarCanvas.getContext('2d');
+    var width = sonarCanvas.offsetWidth,
+        height = sonarCanvas.offsetHeight,
+        centerX = width/2,
+        centerY = height/2,
+        timeDelta = (new Date()) - sonarStartTime,
+        distancePct = timeDelta / (360 / audiolet.scheduler.bpm * 3600),
+        angle = Math.PI * 2 * distancePct - Math.PI / 2,
+        radius = Math.max(sonarCanvas.offsetHeight, sonarCanvas.offsetWidth)/2,
+        ctx = sonarCanvas.getContext('2d');
 
     ctx.clearRect(0, 0, width, height);
     sonarCanvas.width = sonarCanvas.width;
 
     ctx.fillStyle = "rgba(0, 0, 255, 0.15)";
     ctx.moveTo(centerX, centerY);
-    ctx.arc(centerX, centerY, radius, startAngleFactor*Math.PI, endAngleFactor*Math.PI);
+    ctx.arc(centerX, centerY, radius, angle, angle - 0.2, true);
     ctx.lineTo(centerX,centerY);
     ctx.fill();
-    drawSonar.delta += 0.00235;
-    drawSonar.delta = drawSonar.delta > 2 ? 0 : drawSonar.delta;
+    animationLoop = webkitRequestAnimationFrame(drawSonar);
   }
 
   function startSonar() {
-    animationLoop = webkitRequestAnimationFrame(startSonar);
+    sonarStartTime = +(new Date());
     drawSonar();
   }
 
   function stopSonar() {
+    console.log('loop time ' + (new Date() - sonarStartTime));
     webkitCancelRequestAnimationFrame(animationLoop);
     sonarCanvas.style.display = 'none';
     drawSonar.delta = 0;
